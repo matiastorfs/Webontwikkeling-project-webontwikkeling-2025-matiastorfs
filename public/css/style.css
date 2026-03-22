@@ -1,0 +1,206 @@
+.player-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.player-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    width: 280px;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.player-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 15px;
+    text-align: left;
+}
+
+.card-content h3 {
+    margin: 10px 0 5px 0;
+    color: #333;
+}
+
+.status-badge {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.actief { background: #d4edda; color: #155724; }
+.niet-actief { background: #f8d7da; color: #721c24; }
+
+.hobby-tag {
+    display: inline-block;
+    background: #f0f0f0;
+    padding: 2px 6px;
+    margin: 2px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.sidebar-nav {
+    width: 250px;
+    height: 100vh;
+    background: linear-gradient(to right, rgb(0, 0, 91), rgb(96, 0, 0));
+    color: white;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    z-index: 1000;
+}
+
+.nav-links-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex-grow: 1;
+}
+
+.nav-item {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-item:hover {
+    background: linear-gradient(to right, rgb(0, 0, 91), rgb(55, 0, 0));
+    color: white;
+    transform: translateX(5px);
+}
+
+body {
+    margin: 0;
+    padding-left: 250px;
+    background-color: #f4f7f6;
+}
+
+.filter {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: #ffffff;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.search {
+    flex: 2;
+    min-width: 200px;
+}
+
+#searchbar {
+    width: 100%;
+    padding: 10px 15px;
+    border: 2px solid #edf2f7;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+#searchbar:focus {
+    border-color: #007bff;
+}
+
+.selects {
+    flex: 1;
+    min-width: 150px;
+}
+
+.filter select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #edf2f7;
+    border-radius: 8px;
+    background-color: #f8fafc;
+    font-size: 0.9rem;
+    color: #4a5568;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.filter select:hover {
+    background-color: #edf2f7;
+}
+
+.filter select:focus {
+    border-color: #007bff;
+}
+
+.filter-button {
+    padding: 10px 25px;
+    background: linear-gradient(to right, rgb(0, 0, 201), rgb(176, 0, 0));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.filter-button:hover {
+    background-color: #0056b3;
+}
+
+.filter-button:active {
+    transform: scale(0.98);
+}
+
+@media (max-width: 600px) {
+    .player-card {
+        width: 100%;
+    }
+    .sidebar-nav {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 15px;
+    }
+    body {
+        padding-left: 0;
+    }
+    .nav-links-vertical {
+        flex-direction: row;
+        justify-content: center;
+    }
+    .filter {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search, .selects {
+        width: 100%;
+    }
+}

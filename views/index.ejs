@@ -1,0 +1,49 @@
+<%- include("partials/header") %>
+</head>
+<%- include("partials/nav") %>
+<main>
+    <h1>Selectie</h1>
+    <form action="/" method="get" class="filter">
+    <div class="search">
+        <input type="search" name="q" id="searchbar" placeholder="Zoek naar speler" value="<%= q %>">
+    </div>
+
+    <div class="selects">
+        <select name="sortField">
+            <option value="name" >Sorteer op: Naam</option>
+            <option value="age">Sorteer op: Leeftijd</option>
+            <option value="position">Sorteer op: Positie</option>
+        </select>
+    </div>
+
+    <div class="selects">
+        <select name="sortDirection">
+            <option value="asc">Oplopend</option>
+            <option value="desc">Aflopend</option>
+        </select>
+    </div>
+
+    <button type="submit" class="filter-button">Toepassen</button>
+</form>
+    <div class="player-grid">
+        <% for (const speler of spelers) { %>
+            <a href="/speler/<%= speler.id %>" class="player-link">
+                <article class="player-card">
+                    <div class="card-image">
+                        <img src="<%= speler.imageUrl %>" alt="<%= speler.naam %>">
+                    </div>
+                    <div class="card-content">
+                        <span class="status-badge <%= speler.isActief ? 'actief' : 'niet-actief' %>">
+                            <%= speler.status %>
+                        </span>
+                        <h3><%= speler.naam %></h3>
+                        <p><%= speler.positie.naam %></p>
+                        <p><%= speler.leeftijd %> jaar</p>
+                    </div>
+                </article>
+            </a>
+        <% } %>
+    </div>
+</main>
+
+<%- include("partials/footer") %>

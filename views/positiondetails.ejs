@@ -1,0 +1,22 @@
+<%- include("partials/header") %>
+    <link rel="stylesheet" href="/css/positiondetails.css">
+</head>
+<%- include("partials/nav") %>
+
+<div class="container detail-pagina">
+    <a href="/posities" class="back-link">← Terug</a>
+
+    <div class="detail-grid">
+            <h1><%= positie.naam %> (<%= positie.afkorting %>)</h1>
+
+            <section class="biografie">
+                <h3>Over deze positie:</h3>
+                <p><%= positie.beschrijving %></p>
+            </section>
+            <p class="status-info <%= positie.isVerdedigend ? 'verdedigend-ja' : 'verdedigend-nee' %>">
+                        Verdedigend?: <%= positie.isVerdedigend ? "Ja" : "Nee" %>
+            </p>
+    </div>
+</div>
+
+<%- include("partials/footer") %>

@@ -1,0 +1,43 @@
+<%- include("partials/header") %>
+    <link rel="stylesheet" href="/css/details.css">
+</head>
+<%- include("partials/nav") %>
+
+<div class="container detail-pagina">
+    <a href="/" class="back-link">← Terug</a>
+
+    <div class="detail-grid">
+        <div class="detail-image">
+            <img src="<%= speler.imageUrl %>" alt="<%= speler.naam %>">
+        </div>
+
+        <div class="detail-info">
+            <h1><%= speler.naam %></h1>
+            <a href="/posities/<%= speler.positie.afkorting %>" class="tagline"><strong>Positie:</strong> <%= speler.positie.naam %> (<%= speler.positie.afkorting %>)</a>
+            
+            <hr>
+
+            <section class="biografie">
+                <h3>Over deze speler</h3>
+                <p><%= speler.beschrijving %></p>
+            </section>
+
+            <section class="stats">
+                <p><strong>Leeftijd:</strong> <%= speler.leeftijd %> jaar</p>
+                <p><strong>Geboortedatum:</strong> <%= speler.geboortedatum %></p>
+                <p><strong>Status:</strong> <%= speler.status %></p>
+            </section>
+
+            <section class="hobbies-section">
+                <h3>Hobby's</h3>
+                <ul>
+                    <% for (const hobby of speler.hobbies) { %>
+                        <li><%= hobby %></li>
+                    <% } %>
+                </ul>
+            </section>
+        </div>
+    </div>
+</div>
+
+<%- include("partials/footer") %>

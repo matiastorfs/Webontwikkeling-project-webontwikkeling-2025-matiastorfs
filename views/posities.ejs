@@ -1,0 +1,28 @@
+<%- include("partials/header") %>
+    <link rel="stylesheet" href="/css/posities.css">
+</head>
+<%- include("partials/nav") %>
+
+<main>
+    <section class="posities-header">
+        <h1>Overzicht posities</h1>
+        <p>Dit zijn alle posities op het veld:</p>
+    </section>
+
+    <ul class="posities-list">
+        <% for (const positie of posities) { %>
+            <a href="/posities/<%= positie.afkorting %>">
+                <li class="positie-item">
+                    <h2><%= positie.naam %> (<%= positie.afkorting %>)</h2>
+                    <p><%= positie.beschrijving %></p>
+                    
+                    <p class="status-info <%= positie.isVerdedigend ? 'verdedigend-ja' : 'verdedigend-nee' %>">
+                        Verdedigend?: <%= positie.isVerdedigend ? "Ja" : "Nee" %>
+                    </p>
+                </li>
+            </a>
+        <% } %>
+    </ul>
+</main>
+
+<%- include("partials/footer") %>
