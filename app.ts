@@ -1,6 +1,6 @@
 import express from "express";
 import ejs from "ejs";
-import { getData } from "./data";
+import { getPlayers, getPositions, connect } from "./data";
 
 const app = express();
 
@@ -12,10 +12,10 @@ app.get("/", async (req, res) => {
     const sortDirection = typeof req.query.sortDirection === "string" ? req.query.sortDirection : "asc";
     let q : string = typeof req.query.q === "string" ? req.query.q : "";
 
-    const { spelers } = await getData()
+    const spelers = await getPlayers();
 
 
-    const playerFilter = spelers.filter((speler) => {
+    const playerFilter = await spelers.filter((speler) => {
         return speler.naam.toLowerCase().includes(q.toLowerCase());
     });
 
@@ -39,7 +39,7 @@ app.get("/", async (req, res) => {
 
 app.get("/speler/:id", async (req, res) => {
     const id = parseInt(req.params.id);
-    const { spelers } = await getData();
+    const spelers = await getPlayers();
     
     const speler = spelers.find(speler => speler.id === id);
 
@@ -49,7 +49,8 @@ app.get("/speler/:id", async (req, res) => {
 });
 
 app.get("/posities", async (req, res) => {
-    const { posities } = await getData();
+    const posities = await getPositions();
+    const spelers = await getPlayers();
     res.render("posities", {
         posities : posities
     })
@@ -57,7 +58,8 @@ app.get("/posities", async (req, res) => {
 
 app.get("/posities/:position", async (req, res) => {
     const position = req.params.position;
-    const { posities } = await getData();
+    const posities = await getPositions();
+    const spelers = await getPlayers();
 
     const positie = posities.find(positionItem => positionItem.afkorting === position);
 
@@ -66,6 +68,7 @@ app.get("/posities/:position", async (req, res) => {
     })
 });
 
-app.listen(1234, () => {
+app.listen(1234, async () => {
+    await connect();
     console.log("Server runt op poort 1234");
 });

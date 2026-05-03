@@ -1,4 +1,4 @@
-import * as readline from 'readline-sync';
+/*import * as readline from 'readline-sync';
 import {Speler, Positie} from './interfaces';
 
 let spelers: Speler[] = [];
@@ -46,4 +46,4 @@ async function main() {
         console.error(error);
     }
 }
-main();
+main();*/
