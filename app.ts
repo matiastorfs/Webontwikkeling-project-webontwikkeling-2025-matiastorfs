@@ -1,6 +1,6 @@
 import express from "express";
 import ejs from "ejs";
-import { getPlayers, getPositions, connect } from "./data";
+import { getPlayers, getPositions, connect } from "./data.js";
 
 const app = express();
 

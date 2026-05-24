@@ -1,4 +1,4 @@
-import { Positie, Speler } from "./interfaces";
+import { Positie, Speler } from "./interfaces.js";
 import { Collection, MongoClient, } from "mongodb";
 import dotenv from "dotenv";
 

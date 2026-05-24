@@ -1,6 +1,7 @@
 {
   "name": "webontwikkeling-project-webontwikkeling-2025-matiastorfs",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "dependencies": {
     "accepts": "^2.0.0",
@@ -91,7 +92,9 @@
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "start": "node app.ts"
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "dev": "nodemon src/app.ts"
   },
   "keywords": [],
   "author": "",
