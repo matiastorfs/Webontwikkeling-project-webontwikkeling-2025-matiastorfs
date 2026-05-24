@@ -6,6 +6,9 @@
         <button type="submit" class="logout-button">🚪 Logout</button>
     </form>
     <h1>Selectie</h1>
+    <% if (user && user.role === 'ADMIN') { %>
+        <p id="adminloggedin">ADMIN</p>
+    <% } %>
     <form action="/" method="get" class="filter">
     <div class="search">
         <input type="search" name="q" id="searchbar" placeholder="Zoek naar speler" value="<%= q %>">

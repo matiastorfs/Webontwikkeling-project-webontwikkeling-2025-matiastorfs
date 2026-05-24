@@ -1,7 +1,8 @@
 import express from "express";
-import { getPlayers, getPositions, connect, getPlayerById, updatePlayer, login } from "./data.js";
+import { getPlayers, getPositions, connect, getPlayerById, updatePlayer, login, register } from "./data.js";
 import { secureMiddleware } from "./securemiddleware.js";
 import { flashMiddleware } from "./flashmiddleware.js";
+import { adminMiddleware } from "./adminMiddleware.js";
 import session from "./session.js";
 const app = express();
 app.use(session);
@@ -35,9 +36,9 @@ app.get("/", secureMiddleware, async (req, res) => {
         sortField: sortField
     });
 });
-app.get("/speler/:id", async (req, res) => {
-    const id = parseInt(req.params.id);
-    const speler = await getPlayerById(id);
+app.get("/speler/:id", secureMiddleware, async (req, res) => {
+    const id = req.params.id.toString();
+    const speler = await getPlayerById(parseInt(id));
     res.render("details", {
         speler: speler
     });
@@ -58,16 +59,20 @@ app.get("/posities/:position", async (req, res) => {
         positie: positie
     });
 });
-app.get("/speler/:id/edit", async (req, res) => {
-    const id = parseInt(req.params.id);
-    const speler = await getPlayerById(id);
+app.get("/speler/:id/edit", secureMiddleware, adminMiddleware, async (req, res) => {
+    const id = req.params.id.toString();
+    const speler = await getPlayerById(parseInt(id));
     if (!speler) {
         return res.status(404).send("Speler niet gevonden");
     }
     res.render("edit", { speler: speler });
 });
-app.post("/speler/:id/edit", async (req, res) => {
-    const id = parseInt(req.params.id);
+app.post("/speler/:id/edit", secureMiddleware, adminMiddleware, async (req, res) => {
+    if (!req.session.user || req.session.user.role !== "ADMIN") {
+        req.session.message = { type: "error", message: "Alleen voor admins" };
+        return res.redirect("/");
+    }
+    const id = parseInt(req.params.id.toString());
     const { naam, leeftijd, beschrijving, status } = req.body;
     await updatePlayer(id, naam, parseInt(leeftijd), beschrijving, status);
     res.redirect(`/speler/${id}`);
@@ -100,6 +105,25 @@ app.get("/registreer", (req, res) => {
         return res.redirect("/");
     }
     res.render("register");
+});
+app.post("/signin", async (req, res) => {
+    if (req.session && req.session.user) {
+        return res.redirect("/");
+    }
+    const email = req.body.email;
+    const password = req.body.password;
+    try {
+        await register(email, password);
+        req.session.message = {
+            type: "success",
+            message: "Account succesvol aangemaakt! Je kunt nu inloggen."
+        };
+        res.redirect("/login");
+    }
+    catch (e) {
+        req.session.message = { type: "error", message: e.message };
+        res.redirect("/registreer");
+    }
 });
 app.post("/logout", async (req, res) => {
     req.session.destroy(() => {

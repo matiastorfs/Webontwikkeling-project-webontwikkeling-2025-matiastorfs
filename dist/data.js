@@ -6,7 +6,9 @@ export const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWO
 const client = new MongoClient(uri);
 export const positionsCollection = client.db("webontwikkelingproject").collection("posities");
 export const playersCollection = client.db("webontwikkelingproject").collection("spelers");
-export const userCollection = client.db("login-express").collection("users");
+const userCollection = client
+    .db("webontwikkelingproject")
+    .collection("users");
 export async function getData() {
     const positiesResponse = await fetch("https://raw.githubusercontent.com/matiastorfs/dataset-project-webontwikkeling/main/posities.json");
     let posities = await positiesResponse.json();
@@ -97,4 +99,18 @@ export async function login(email, password) {
     else {
         throw new Error("User not found");
     }
+}
+export async function register(email, password) {
+    if (email === "" || password === "") {
+        throw new Error("Email and password required");
+    }
+    const existingUser = await userCollection.findOne({ email: email });
+    if (existingUser) {
+        throw new Error("User already exists with this email");
+    }
+    await userCollection.insertOne({
+        email: email,
+        password: await bcrypt.hash(password, saltRounds),
+        role: "USER"
+    });
 }

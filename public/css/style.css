@@ -120,6 +120,15 @@ body {
     min-width: 200px;
 }
 
+#adminloggedin {
+    margin: 10px;
+    color: rgb(134, 0, 0);
+    background-color: red;
+    border-radius: 10px;
+    padding: 5px;
+    width: 70px;
+}
+
 #searchbar {
     width: 100%;
     padding: 10px 15px;
