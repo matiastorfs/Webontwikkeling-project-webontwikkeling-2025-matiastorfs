@@ -1,0 +1,35 @@
+<%- include("partials/header") %>
+<link rel="stylesheet"href="/css/login.css" />
+</head>
+<body>
+
+<main class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <h2>Welkom Terug</h2>
+            <p>Log in om spelers te beheren</p>
+        </div>
+
+        <% if (message) { %>
+         <p id="flash-message" class="<%= message.type %>"><%= message.message %></p>
+      <% } %>
+
+        <form action="/login" method="POST" class="login-form">
+            <div class="form-group">
+                <label for="email">E-mailadres:</label>
+                <input type="email" id="email" name="email" required placeholder="je@email.com"/>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Wachtwoord:</label>
+                <input type="password" id="password" name="password" required placeholder="••••••••"/>
+            </div>
+            
+            <button type="submit" class="btn-login">Inloggen</button>
+            Of 
+            <button><a href="/registreer">Maak een account aan</a></button>
+        </form>
+    </div>
+</main>
+
+<%- include("partials/footer") %>

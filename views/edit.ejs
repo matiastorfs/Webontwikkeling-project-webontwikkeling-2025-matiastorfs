@@ -1,0 +1,46 @@
+<%- include("partials/header") %>
+<link rel="stylesheet"href="/css/edit.css" />
+</head>
+<%- include("partials/nav") %>
+
+<main class="edit-container">
+    <div class="edit-card">
+        <h1>Speler bewerken</h1>
+        <p class="edit-subtitle">Pas de gegevens van <strong><%= speler.naam %></strong> aan.</p>
+
+        <form action="/speler/<%= speler.id %>/edit" method="POST" class="edit-form">
+            
+            <div class="form-group">
+                <label for="naam">Naam speler</label>
+                <input type="text" id="naam" name="naam" value="<%= speler.naam %>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="leeftijd">Leeftijd (jaar)</label>
+                <input type="number" id="leeftijd" name="leeftijd" value="<%= speler.leeftijd %>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="beschrijving">Biografie / Beschrijving</label>
+                <textarea id="beschrijving" name="beschrijving" rows="5" required><%= speler.beschrijving %></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="status">Huidige status</label>
+                <select id="status" name="status">
+                    <option value="Actief" <%= speler.status === 'Actief' ? 'selected' : '' %>>Actief</option>
+                    <option value="Geblesseerd" <%= speler.status === 'Geblesseerd' ? 'selected' : '' %>>Geblesseerd</option>
+                    <option value="Inactief" <%= speler.status === 'Inactief' ? 'selected' : '' %>>Inactief</option>
+                    <option value="Geschorst" <%= speler.status === 'Geschorst' ? 'selected' : '' %>>Geschorst</option>
+                </select>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-save">Wijzigingen Opslaan</button>
+                <a href="/speler/<%= speler.id %>" class="btn btn-cancel">Annuleren</a>
+            </div>
+        </form>
+    </div>
+</main>
+
+<%- include("partials/footer") %>

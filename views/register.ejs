@@ -1,0 +1,33 @@
+<%- include("partials/header") %>
+<link rel="stylesheet"href="/css/login.css" />
+</head>
+<body>
+
+<main class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <h2>Welkom</h2>
+            <p>Maak een account aan</p>
+        </div>
+
+        <% if (message) { %>
+         <p id="flash-message" class="<%= message.type %>"><%= message.message %></p>
+      <% } %>
+
+        <form action="/signin" method="POST" class="login-form">
+            <div class="form-group">
+                <label for="email">E-mailadres:</label>
+                <input type="email" id="email" name="email" required/>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Wachtwoord:</label>
+                <input type="password" id="password" name="password" required/>
+            </div>
+            
+            <button type="submit" class="btn-login">Registreer</button>
+        </form>
+    </div>
+</main>
+
+<%- include("partials/footer") %>

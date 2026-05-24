@@ -13,7 +13,12 @@
     font-weight: 600;
     transition: color 0.2s;
 }
-
+.btn-edit {
+    width: 145px;
+    background-color: red;
+    border-radius: 5px;
+    padding: 5px;
+}
 .back-link:hover {
     color: #007bff;
 }

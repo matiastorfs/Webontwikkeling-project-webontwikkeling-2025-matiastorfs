@@ -1,0 +1,163 @@
+/* ==========================================================================
+   Edit Pagina Styling
+   ========================================================================== */
+
+/* Container die de vormgeving van de details-pagina overneemt */
+.edit-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.edit-card {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 40px;
+}
+
+.edit-card h1 {
+    font-size: 2.2rem;
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #222;
+}
+
+.edit-subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Formulier Layout */
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Groepering van Labels en Inputs */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+/* Input, Select en Textarea elementen */
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #edf2f7;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #f8fafc;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+/* Hover & Focus states */
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+    background-color: #edf2f7;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #007bff;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Specifieke styling voor textarea */
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.5;
+}
+
+/* Knoppen Sectie */
+.form-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+    border-top: 1px solid #eee;
+    padding-top: 25px;
+}
+
+/* Algemene button styles */
+.btn {
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+/* Opslaan knop (Gradient passend bij de filter-button) */
+.btn-save {
+    background: linear-gradient(to right, rgb(0, 0, 201), rgb(176, 0, 0));
+    color: white;
+    border: none;
+}
+
+.btn-save:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.btn-save:active {
+    transform: translateY(1px);
+}
+
+/* Annuleren knop */
+.btn-cancel {
+    background-color: #e2e8f0;
+    color: #4a5568;
+    border: none;
+}
+
+.btn-cancel:hover {
+    background-color: #cbd5e1;
+    color: #1a202c;
+}
+
+/* Responsive design voor mobiel */
+@media (max-width: 600px) {
+    .edit-container {
+        margin: 20px auto;
+    }
+    
+    .edit-card {
+        padding: 25px 20px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}

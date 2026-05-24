@@ -2,6 +2,9 @@
 </head>
 <%- include("partials/nav") %>
 <main>
+    <form action="/logout" method="post" class="logout-form">
+        <button type="submit" class="logout-button">🚪 Logout</button>
+    </form>
     <h1>Selectie</h1>
     <form action="/" method="get" class="filter">
     <div class="search">
@@ -15,7 +18,6 @@
             <option value="position">Sorteer op: Positie</option>
         </select>
     </div>
-
     <div class="selects">
         <select name="sortDirection">
             <option value="asc">Oplopend</option>
@@ -25,6 +27,9 @@
 
     <button type="submit" class="filter-button">Toepassen</button>
 </form>
+    <% if (message) { %>
+         <p id="flash-message" class="<%= message.type %>"><%= message.message %></p>
+      <% } %>
     <div class="player-grid">
         <% for (const speler of spelers) { %>
             <a href="/speler/<%= speler.id %>" class="player-link">

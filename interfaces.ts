@@ -27,3 +27,15 @@ export interface SpelerPositie {
   naam: string
   afkorting: string
 };
+
+export interface User {
+    _id?: ObjectId;
+    email: string;
+    password?: string;
+    role: "ADMIN" | "USER";
+}
+
+export interface FlashMessage {
+    type: "error" | "success"
+    message: string;
+}
