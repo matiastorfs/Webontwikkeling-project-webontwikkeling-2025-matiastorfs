@@ -1,3 +1,5 @@
+import { ObjectId } from "mongodb";
+
 export interface Positie {
   id: number
   naam: string
@@ -7,6 +9,7 @@ export interface Positie {
 };
 
 export interface Speler {
+  _id?: ObjectId;
   id: number
   naam: string
   beschrijving: string

@@ -91,7 +91,7 @@
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "start": "nodemon app.ts"
+    "start": "node app.ts"
   },
   "keywords": [],
   "author": "",
