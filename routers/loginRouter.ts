@@ -5,7 +5,7 @@ import { User } from "../interfaces.js";
 export default function loginRouter() {
   const router = express.Router();
 
-  router.get("/", (req, res) => {
+  router.get("/", async (req, res) => {
     if (req.session && req.session.user) {
         return res.redirect("/");
     }

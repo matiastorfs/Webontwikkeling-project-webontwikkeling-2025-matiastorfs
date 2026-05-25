@@ -6,7 +6,7 @@ import { adminMiddleware } from "../adminMiddleware.js";
 export default function spelersRouter() {
     const router = express.Router({ mergeParams: true });
 
-  router.get("/", secureMiddleware, async (req, res) => {
+  router.get("/:id", async (req, res) => {
     const id = req.params.id.toString();
 
     const speler = await getPlayerById(parseInt(id));
@@ -17,7 +17,7 @@ export default function spelersRouter() {
     });
 });
 
-router.get("/edit", secureMiddleware, adminMiddleware, async (req, res) => {
+router.get("/:id/edit", adminMiddleware, async (req, res) => {
     const id = req.params.id.toString();
     const speler = await getPlayerById(parseInt(id));
 
@@ -28,7 +28,7 @@ router.get("/edit", secureMiddleware, adminMiddleware, async (req, res) => {
     res.render("edit", { speler: speler });
 });
 
-router.post("/edit", secureMiddleware, adminMiddleware, async (req, res) => {
+router.post("/:id/edit", adminMiddleware, async (req, res) => {
     if (!req.session.user || req.session.user.role !== "ADMIN") {
         req.session.message = { type: "error", message: "Alleen voor admins" };
         return res.redirect("/");

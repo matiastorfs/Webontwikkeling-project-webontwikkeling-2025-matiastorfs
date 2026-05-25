@@ -7,7 +7,6 @@ import loginRouter from "./routers/loginRouter.js";
 import positieRouter from "./routers/positieRouter.js";
 import registreerRouter from "./routers/registreerRouter.js";
 import spelersRouter from "./routers/spelersRouter.js";
-import { adminMiddleware } from "./adminMiddleware.js";
 const app = express();
 app.use(session);
 app.use(express.static("public"));
@@ -17,7 +16,7 @@ app.set("view engine", "ejs");
 app.use("/login", flashMiddleware, loginRouter());
 app.use("/posities", secureMiddleware, positieRouter());
 app.use("/registreer", flashMiddleware, registreerRouter());
-app.use("/speler/:id", secureMiddleware, adminMiddleware, spelersRouter());
+app.use("/speler", secureMiddleware, spelersRouter());
 app.get("/", secureMiddleware, async (req, res) => {
     const sortField = typeof req.query.sortField === "string" ? req.query.sortField : "name";
     const sortDirection = typeof req.query.sortDirection === "string" ? req.query.sortDirection : "asc";

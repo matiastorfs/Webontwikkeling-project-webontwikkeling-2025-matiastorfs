@@ -2,7 +2,7 @@ import express from "express";
 import { login } from "../data.js";
 export default function loginRouter() {
     const router = express.Router();
-    router.get("/", (req, res) => {
+    router.get("/", async (req, res) => {
         if (req.session && req.session.user) {
             return res.redirect("/");
         }

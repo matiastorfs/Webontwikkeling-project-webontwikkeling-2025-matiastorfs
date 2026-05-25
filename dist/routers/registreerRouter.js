@@ -2,13 +2,13 @@ import express from "express";
 import { register } from "../data.js";
 export default function registreerRouter() {
     const router = express.Router();
-    router.get("/registreer", (req, res) => {
+    router.get("/", (req, res) => {
         if (req.session && req.session.user) {
             return res.redirect("/");
         }
         res.render("register");
     });
-    router.post("/registreer", async (req, res) => {
+    router.post("/", async (req, res) => {
         if (req.session && req.session.user) {
             return res.redirect("/");
         }

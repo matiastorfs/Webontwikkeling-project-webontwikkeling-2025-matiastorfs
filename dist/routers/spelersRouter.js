@@ -1,17 +1,16 @@
 import express from "express";
 import { getPlayerById, updatePlayer } from "../data.js";
-import { secureMiddleware } from "../securemiddleware.js";
 import { adminMiddleware } from "../adminMiddleware.js";
 export default function spelersRouter() {
     const router = express.Router({ mergeParams: true });
-    router.get("/", secureMiddleware, async (req, res) => {
+    router.get("/:id", async (req, res) => {
         const id = req.params.id.toString();
         const speler = await getPlayerById(parseInt(id));
         res.render("details", {
             speler: speler
         });
     });
-    router.get("/edit", secureMiddleware, adminMiddleware, async (req, res) => {
+    router.get("/:id/edit", adminMiddleware, async (req, res) => {
         const id = req.params.id.toString();
         const speler = await getPlayerById(parseInt(id));
         if (!speler) {
@@ -19,7 +18,7 @@ export default function spelersRouter() {
         }
         res.render("edit", { speler: speler });
     });
-    router.post("/edit", secureMiddleware, adminMiddleware, async (req, res) => {
+    router.post("/:id/edit", adminMiddleware, async (req, res) => {
         if (!req.session.user || req.session.user.role !== "ADMIN") {
             req.session.message = { type: "error", message: "Alleen voor admins" };
             return res.redirect("/");
