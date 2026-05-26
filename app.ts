@@ -27,7 +27,7 @@ app.get("/", secureMiddleware, async (req, res) => {
     const sortDirection = typeof req.query.sortDirection === "string" ? req.query.sortDirection : "asc";
     let q : string = typeof req.query.q === "string" ? req.query.q : "";
 
-    const spelers = await getPlayers();
+    const spelers = await getPlayers(); 
 
 
     const playerFilter = await spelers.filter((speler) => {
